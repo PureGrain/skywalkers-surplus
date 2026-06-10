@@ -1,36 +1,4 @@
-# Nothing to see here. Move along.
 User-agent: *
-Disallow: /
+Allow: /
 
-# GPTBot, Claude, common AI crawlers — explicitly not welcome
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Claude-Web
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
-
-User-agent: Slurp
-Disallow: /
-
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-Sitemap:
+Sitemap: https://skywalkerssurplus.com/sitemap.xml

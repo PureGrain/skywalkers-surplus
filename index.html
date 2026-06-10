@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Skywalker's Surplus — Coming Soon</title>
-  <meta name="robots" content="noindex, nofollow, noarchive, nositelinkssearchbox, nosnippet" />
-  <meta name="description" content="Coming soon." />
+  <title>Skywalker's Surplus — Tested CB and Ham Radio Gear, Louisville KY</title>
+  <meta name="description" content="Tested vintage CB and ham radio gear from Colonel Clink's 27-year Louisville booth. Over 250 radios, every one inspected, benched, and described honestly. Invitation only." />
+  <meta property="og:title" content="Skywalker's Surplus" />
+  <meta property="og:description" content="Tested CB and ham radio gear from Louisville, KY. Invitation only." />
+  <meta property="og:image" content="/skywalker_surplus_new_radio.png" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://skywalkerssurplus.com/" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <style>
@@ -30,7 +34,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Starfield ── */
     #starfield {
       position: fixed;
       inset: 0;
@@ -40,11 +43,10 @@
       pointer-events: none;
     }
 
-    /* ── Header ── */
     header {
       position: relative;
       z-index: 10;
-      background: rgba(11,11,31,.85);
+      background: rgba(11,11,31,.9);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(6px);
       padding: 14px 24px;
@@ -57,102 +59,200 @@
       gap: 14px;
     }
     .header-logo { height: 44px; width: auto; display: block; }
-    .header-name {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: .02em;
-    }
-    .header-sub {
-      font-size: .75rem;
-      color: var(--muted);
-      margin-top: 2px;
-    }
+    .header-name { font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: .02em; }
+    .header-sub  { font-size: .75rem; color: var(--muted); margin-top: 2px; }
 
-    /* ── Main ── */
     main {
-      flex: 1;
       position: relative;
       z-index: 10;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 24px;
-      text-align: center;
+      flex: 1;
     }
 
-    .eyebrow {
-      font-size: .8rem;
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 70px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-size: .78rem;
       letter-spacing: .18em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
-
-    .coming-soon {
-      font-size: clamp(3.2rem, 12vw, 8rem);
+    .hero-stat {
+      font-size: clamp(3rem, 11vw, 7rem);
       font-weight: 900;
-      letter-spacing: .04em;
+      letter-spacing: .03em;
       text-transform: uppercase;
       line-height: 1;
       color: var(--accent);
       text-shadow:
-        0 0 40px rgba(239,96,8,.55),
-        0 0 80px rgba(239,96,8,.25),
-        0 0 120px rgba(239,96,8,.12);
-      animation: pulse 3.6s ease-in-out infinite;
+        0 0 40px rgba(239,96,8,.5),
+        0 0 80px rgba(239,96,8,.22),
+        0 0 140px rgba(239,96,8,.1);
+      animation: pulse 3.8s ease-in-out infinite;
     }
-
     @keyframes pulse {
-      0%, 100% { text-shadow: 0 0 40px rgba(239,96,8,.55), 0 0 80px rgba(239,96,8,.25), 0 0 120px rgba(239,96,8,.12); }
-      50%       { text-shadow: 0 0 60px rgba(239,96,8,.8),  0 0 120px rgba(239,96,8,.4),  0 0 180px rgba(239,96,8,.2); }
+      0%, 100% { text-shadow: 0 0 40px rgba(239,96,8,.5), 0 0 80px rgba(239,96,8,.22), 0 0 140px rgba(239,96,8,.1); }
+      50%       { text-shadow: 0 0 60px rgba(239,96,8,.75), 0 0 120px rgba(239,96,8,.38), 0 0 200px rgba(239,96,8,.18); }
     }
-
-    .tagline {
-      margin-top: 28px;
-      font-size: 1.05rem;
+    .hero-sub {
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      color: var(--text);
+      margin-top: 16px;
+      font-weight: 600;
+      letter-spacing: .01em;
+    }
+    .hero-body {
+      margin-top: 18px;
+      font-size: 1rem;
       color: var(--muted);
-      line-height: 1.6;
-      max-width: 440px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     .signal {
       display: flex;
       align-items: flex-end;
       gap: 5px;
       justify-content: center;
-      margin-top: 40px;
-      height: 28px;
+      margin-top: 36px;
+      height: 24px;
     }
     .signal-bar {
-      width: 6px;
+      width: 5px;
       background: var(--accent);
       border-radius: 3px 3px 0 0;
       opacity: .25;
       animation: signal-blink 1.4s ease-in-out infinite;
     }
-    .signal-bar:nth-child(1) { height: 8px;  animation-delay: 0s; }
-    .signal-bar:nth-child(2) { height: 14px; animation-delay: .15s; }
-    .signal-bar:nth-child(3) { height: 20px; animation-delay: .3s; }
-    .signal-bar:nth-child(4) { height: 26px; animation-delay: .45s; }
-    .signal-bar:nth-child(5) { height: 20px; animation-delay: .6s; }
-    .signal-bar:nth-child(6) { height: 14px; animation-delay: .75s; }
-    .signal-bar:nth-child(7) { height: 8px;  animation-delay: .9s; }
-
+    .signal-bar:nth-child(1) { height: 7px;  animation-delay: 0s; }
+    .signal-bar:nth-child(2) { height: 12px; animation-delay: .15s; }
+    .signal-bar:nth-child(3) { height: 18px; animation-delay: .3s; }
+    .signal-bar:nth-child(4) { height: 23px; animation-delay: .45s; }
+    .signal-bar:nth-child(5) { height: 18px; animation-delay: .6s; }
+    .signal-bar:nth-child(6) { height: 12px; animation-delay: .75s; }
+    .signal-bar:nth-child(7) { height: 7px;  animation-delay: .9s; }
     @keyframes signal-blink {
       0%, 100% { opacity: .2; }
       50%       { opacity: 1; }
+    }
+
+    /* ── Sections ── */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 72px;
+    }
+    .section-label {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    p.muted { color: var(--muted); }
+
+    /* ── Process steps ── */
+    .steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 16px; }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .step-num {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .1em;
+      min-width: 28px;
+      padding-top: 2px;
+    }
+    .step-text {
+      font-size: .95rem;
+      line-height: 1.6;
+      color: var(--text);
+    }
+
+    /* ── Invite panel ── */
+    .invite-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .invite-panel h2 { font-size: 1.6rem; margin-bottom: 14px; }
+    .invite-panel p { color: var(--muted); max-width: 460px; margin: 0 auto 18px; }
+    .invite-rule {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      margin-top: 4px;
+      margin-bottom: 28px;
+    }
+    .btn-shop {
+      display: inline-block;
+      background: var(--accent);
+      color: #000;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: .95rem;
+      text-decoration: none;
+      letter-spacing: .01em;
+    }
+    .btn-shop:hover { opacity: .88; }
+
+    /* ── Divider ── */
+    .divider {
+      max-width: 720px;
+      margin: 0 auto 72px;
+      padding: 0 24px;
+      border: none;
+      border-top: 1px solid var(--line);
     }
 
     /* ── Footer ── */
     footer {
       position: relative;
       z-index: 10;
-      background: rgba(11,11,31,.85);
+      background: rgba(11,11,31,.9);
       border-top: 1px solid var(--line);
       backdrop-filter: blur(6px);
-      padding: 20px 24px;
+      padding: 28px 24px;
     }
     .footer-inner {
       max-width: 860px;
@@ -160,17 +260,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      text-align: center;
     }
-    .footer-logo-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .footer-favicon { width: 24px; height: 24px; border-radius: 4px; }
-    .footer-brand { font-size: .88rem; font-weight: 600; color: var(--text); }
+    .footer-brand { font-size: .9rem; font-weight: 600; color: var(--text); }
     .footer-location { font-size: .78rem; color: var(--muted); }
-    .footer-copy { font-size: .75rem; color: var(--line); margin-top: 4px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: center; font-size: .82rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: .73rem; color: var(--line); margin-top: 4px; }
+
+    @media (max-width: 540px) {
+      .invite-panel { padding: 28px 20px; }
+    }
   </style>
 </head>
 <body>
@@ -182,33 +284,92 @@
     <img src="/skywalker_surplus_new_radio.png" class="header-logo" alt="Skywalker's Surplus" />
     <div>
       <div class="header-name">Skywalker's Surplus</div>
-      <div class="header-sub">CB &amp; Ham Radio Gear — Louisville, KY</div>
+      <div class="header-sub">CB &amp; Ham Radio Gear &mdash; Louisville, KY</div>
     </div>
   </div>
 </header>
 
 <main>
-  <div class="eyebrow">📡 Transmission incoming</div>
-  <div class="coming-soon">Coming Soon</div>
-  <p class="tagline">CB and ham radio gear from one man's obsession.<br>Louisville, KY. Private collection. By invite only.</p>
-  <div class="signal">
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
-    <div class="signal-bar"></div>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Derby Park &bull; Louisville, KY &bull; 27 years of history</div>
+    <div class="hero-stat">250+ Radios</div>
+    <div class="hero-sub">One booth. One operator. Everything he never let go of.</div>
+    <p class="hero-body">Vintage CB and ham radio gear sourced from Colonel Clink's 27-year run at Derby Park flea market. Every radio inspected, benched, and described honestly before it leaves here.</p>
+    <div class="signal">
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+      <div class="signal-bar"></div>
+    </div>
   </div>
+
+  <div class="section">
+    <div class="section-label">The Story</div>
+    <h2>This is not a liquidation. It is a continuation.</h2>
+    <p>At Derby Park flea market in Louisville, there was a booth that had been there for 27 years. The last 19 belonged to one operator known around here as Colonel Clink. CB gear, ham equipment, bench tools, power supplies, variacs, meters, and anything else electronic he thought he could nurse back to life. Floor to ceiling. Wall to wall. You could not get into it.</p>
+    <p>When the opportunity came to take it all, I took it. Every radio. Every meter. Every mystery box in the back corner. Over 250 radios and still counting, because I am not even done moving it all home yet. I am SkyWalker. I run a base station here in Louisville, chase skip on 38 LSB, and I knew exactly what this collection was and exactly what it deserved.</p>
+    <p class="muted">Colonel Clink spent 27 years pulling in gear that deserved another shot. One radio at a time, every one of them gets to live again.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-label">The Process</div>
+    <h2>Every CB that comes off this bench gets the same treatment.</h2>
+    <p class="muted" style="margin-bottom:28px">No shortcuts. No guessing. Here is exactly what happens before anything gets listed.</p>
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">01</span>
+        <span class="step-text">Open it up and inspect for burnt components and traces. If something failed hard, it shows before a single volt goes in.</span>
+      </li>
+      <li class="step">
+        <span class="step-num">02</span>
+        <span class="step-text">Power it up on a variac with a 10-amp bench supply, brought up slowly to 13.8 volts, connected directly to the rig.</span>
+      </li>
+      <li class="step">
+        <span class="step-num">03</span>
+        <span class="step-text">Run it through the full meter and scope setup: modulation, power output, and receive. All three get checked and noted.</span>
+      </li>
+      <li class="step">
+        <span class="step-num">04</span>
+        <span class="step-text">If a mic came with it, test it through the mic tester. What you see in the listing is what it actually does.</span>
+      </li>
+      <li class="step">
+        <span class="step-num">05</span>
+        <span class="step-text">Mark it for peak and tune, clean it up, and put it on the bench for final inspection before it goes up for sale.</span>
+      </li>
+    </ol>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="invite-panel">
+      <h2>The shop is invitation only.</h2>
+      <p>Every member receives five invites total. There are no more after that.</p>
+      <div class="invite-rule">If you know someone inside, ask them. When their invites are gone, they are gone.</div>
+      <a href="https://shop.skywalkerssurplus.com" class="btn-shop">Already a member? Browse the shop &rarr;</a>
+    </div>
+  </div>
+
 </main>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo-row">
-      <img src="/favicon-512.png" class="footer-favicon" alt="" />
-      <span class="footer-brand">Skywalker's Surplus</span>
+    <div class="footer-brand">
+      <img src="/favicon-512.png" alt="" width="18" height="18" style="vertical-align:middle;opacity:.7;margin-right:6px" />Skywalker's Surplus
     </div>
     <div class="footer-location">CB &amp; Ham Radio Gear &mdash; Louisville, KY</div>
+    <nav class="footer-links">
+      <a href="https://shop.skywalkerssurplus.com/about.html">About</a>
+      <a href="https://shop.skywalkerssurplus.com/terms.html">Terms of Sale</a>
+      <a href="https://shop.skywalkerssurplus.com/privacy.html">Privacy Policy</a>
+      <a href="mailto:challon.holt@gmail.com">Contact</a>
+    </nav>
     <div class="footer-copy">&copy; <span id="yr"></span> Skywalker's Surplus. All rights reserved.</div>
   </div>
 </footer>
@@ -216,22 +377,18 @@
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-// Starfield
 (function () {
   const canvas = document.getElementById('starfield');
-  const ctx = canvas.getContext('2d');
-  const stars = Array.from({ length: 280 }, () => ({
+  const ctx    = canvas.getContext('2d');
+  const stars  = Array.from({ length: 260 }, () => ({
     x: Math.random(), y: Math.random(),
     r: Math.random() * 1.3 + 0.2,
-    o: Math.random() * 0.65 + 0.2,
-    speed: Math.random() * 0.4 + 0.1,
+    o: Math.random() * 0.6 + 0.2,
+    speed: Math.random() * 0.35 + 0.08,
     phase: Math.random() * Math.PI * 2,
   }));
 
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
   window.addEventListener('resize', resize);
   resize();
 
