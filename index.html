@@ -447,14 +447,39 @@
     </div>
     <div class="footer-location">CB &amp; Ham Radio Gear &mdash; Louisville, KY</div>
     <nav class="footer-links">
-      <a href="https://shop.skywalkerssurplus.com/about.html">About</a>
-      <a href="https://shop.skywalkerssurplus.com/terms.html">Terms of Sale</a>
-      <a href="https://shop.skywalkerssurplus.com/privacy.html">Privacy Policy</a>
+      <a href="/about.html">About</a>
+      <a href="/terms.html">Terms of Sale</a>
+      <a href="/privacy.html">Privacy Policy</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="footer-copy">&copy; <span id="yr"></span> Skywalker's Surplus. All rights reserved.</div>
   </div>
 </footer>
+
+<div id="page-modal" style="display:none;position:fixed;inset:0;z-index:900;background:var(--bg);flex-direction:column">
+  <div style="display:flex;align-items:center;justify-content:flex-end;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)">
+    <button id="page-modal-close" style="background:none;border:1px solid var(--line);color:var(--muted);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:.85rem">✕ Close</button>
+  </div>
+  <iframe id="page-modal-frame" src="" style="flex:1;border:none;width:100%;display:block"></iframe>
+</div>
+
+<script>
+(function () {
+  const pageModal = document.getElementById('page-modal');
+  const pageModalFrame = document.getElementById('page-modal-frame');
+  function closePageModal() { pageModal.style.display='none'; pageModalFrame.src=''; document.body.style.overflow=''; }
+  document.getElementById('page-modal-close').addEventListener('click', closePageModal);
+  document.addEventListener('keydown', function(e) { if (e.key==='Escape' && pageModal.style.display!=='none') closePageModal(); });
+  document.addEventListener('click', function(e) {
+    const a = e.target.closest('a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (['/about.html','/terms.html','/privacy.html'].includes(href)) {
+      e.preventDefault(); pageModalFrame.src=href; pageModal.style.display='flex'; document.body.style.overflow='hidden';
+    }
+  });
+})();
+</script>
 
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
