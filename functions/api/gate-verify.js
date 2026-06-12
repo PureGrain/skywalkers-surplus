@@ -2,15 +2,19 @@ export async function onRequestPost(context) {
   const { request, env } = context;
 
   let token, next;
-  const ct = request.headers.get('Content-Type') || '';
-  if (ct.includes('application/json')) {
-    const body = await request.json();
-    token = body.token;
-    next = body.next;
-  } else {
-    const fd = await request.formData();
-    token = fd.get('token');
-    next = fd.get('next');
+  try {
+    const ct = request.headers.get('Content-Type') || '';
+    if (ct.includes('application/json')) {
+      const body = await request.json();
+      token = body.token;
+      next = body.next;
+    } else {
+      const fd = await request.formData();
+      token = fd.get('token');
+      next = fd.get('next');
+    }
+  } catch {
+    return Response.redirect('/gate?error=failed', 302);
   }
 
   if (!next || !next.startsWith('/') || next.startsWith('//')) next = '/';
@@ -19,15 +23,19 @@ export async function onRequestPost(context) {
     return Response.redirect(`/gate?next=${encodeURIComponent(next)}&error=missing`, 302);
   }
 
-  const ip = request.headers.get('CF-Connecting-IP') || '';
-  const verifyResp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ secret: env.TURNSTILE_SECRET, response: token, remoteip: ip }),
-  });
+  try {
+    const ip = request.headers.get('CF-Connecting-IP') || '';
+    const verifyResp = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret: env.TURNSTILE_SECRET, response: token, remoteip: ip }),
+    });
 
-  const data = await verifyResp.json();
-  if (!data.success) {
+    const data = await verifyResp.json();
+    if (!data.success) {
+      return Response.redirect(`/gate?next=${encodeURIComponent(next)}&error=failed`, 302);
+    }
+  } catch {
     return Response.redirect(`/gate?next=${encodeURIComponent(next)}&error=failed`, 302);
   }
 
