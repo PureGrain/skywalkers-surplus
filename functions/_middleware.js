@@ -24,26 +24,30 @@ const GEO_BLOCK_HTML = `<!DOCTYPE html>
 </html>`;
 
 export async function onRequest(context) {
-  const url = new URL(context.request.url);
-  const path = url.pathname;
+  try {
+    const url = new URL(context.request.url);
+    const path = url.pathname;
 
-  const country = context.request.headers.get('CF-IPCountry');
-  if (country && country !== 'US') {
-    return new Response(GEO_BLOCK_HTML, {
-      status: 403,
-      headers: { 'Content-Type': 'text/html; charset=utf-8' },
-    });
-  }
+    const country = context.request.headers.get('CF-IPCountry');
+    if (country && country !== 'US') {
+      return new Response(GEO_BLOCK_HTML, {
+        status: 403,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' },
+      });
+    }
 
-  if (path === '/gate' || path.startsWith('/api/gate-verify') || STATIC.test(path)) {
+    if (path === '/gate' || path.startsWith('/api/gate-verify') || STATIC.test(path)) {
+      return context.next();
+    }
+
+    const cookie = context.request.headers.get('Cookie') || '';
+    if (cookie.split(';').some(c => c.trim() === '_ts_gate=verified')) {
+      return context.next();
+    }
+
+    const next = encodeURIComponent(path + url.search);
+    return Response.redirect(`${url.origin}/gate?next=${next}`, 302);
+  } catch {
     return context.next();
   }
-
-  const cookie = context.request.headers.get('Cookie') || '';
-  if (cookie.split(';').some(c => c.trim() === '_ts_gate=verified')) {
-    return context.next();
-  }
-
-  const next = encodeURIComponent(path + url.search);
-  return Response.redirect(`${url.origin}/gate?next=${next}`, 302);
 }
